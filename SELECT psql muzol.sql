@@ -10,11 +10,9 @@ SELECT name, year_issue FROM Compilation
 WHERE year_issue BETWEEN '2018-01-01' AND '2020-12-31';
 
 --название и продолжительность самого длительного трека;
-SELECT name, MAX(duration) FROM Track
-GROUP BY name
-ORDER BY MAX(duration) DESC;
-
-SELECT name, duration FROM Track;
+SELECT name, duration FROM Track
+WHERE duration = (SELECT MAX(duration) FROM Track)
+ORDER BY duration DESC;
 
  --название треков, продолжительность которых не менее 3,5 минуты;
 SELECT name, duration FROM Track
